@@ -83,10 +83,10 @@ def location_updated(old_path, new_path):
                             'Accuracy')
     description = get_property(location_properties, LOCATION_INTERFACE_NAME,
                             'Description')
-    print "Latitude = " + str(latitude)
-    print "Longitude = " + str(longitude)
-    print "Accuracy = " + str(accuracy)
-    print "Description = " + str(description)
+    print("Latitude = " + str(latitude))
+    print("Longitude = " + str(longitude))
+    print("Accuracy = " + str(accuracy))
+    print("Description = " + str(description))
 
     show_position_on_map(latitude, longitude)
 
@@ -118,7 +118,7 @@ def get_map(latitude, longitude):
     return embed
 
 def main():
-    print "This code will print your location and exit after 10 seconds"
+    print("This code will print your location and exit after 10 seconds")
 
     global system_bus
 
@@ -146,6 +146,8 @@ def main():
     client_properties = get_interface(client_object, PROPERTIES_INTERFACE_NAME)
     set_property(client_properties, CLIENT_INTERFACE_NAME,
                  'DistanceThreshold', dbus.UInt32(1000))
+    set_property(client_properties, CLIENT_INTERFACE_NAME,
+                 'DesktopId', 'GeoClue2-Locator-python')
 
     client = get_interface(client_object, CLIENT_INTERFACE_NAME)
 
@@ -161,7 +163,7 @@ def main():
     GObject.timeout_add(10000, loop.quit)
     loop.run()
     client.Stop()
-    print "If no location was printed, run geoclue as root in another terminal -"
-    print "Path to the executable is in 'org.freedesktop.GeoClue2.service' file"
+    print("If no location was printed, run geoclue as root in another terminal -")
+    print("Path to the executable is in 'org.freedesktop.GeoClue2.service' file")
 
 main()
